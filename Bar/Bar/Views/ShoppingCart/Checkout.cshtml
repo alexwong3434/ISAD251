@@ -1,0 +1,58 @@
+﻿@model Bar.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Checkout";
+}
+<h2>Order Successful</h2>
+<h2>Please keep your Order ID for reference</h2>
+<table class="table">
+    <tr>
+        <th>
+            Order ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Price (each)
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Date
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr id="row-@item.RecordId">
+            <td>
+                @item.RecordId
+            </td>
+            <td>
+                @Html.ActionLink(item.Item.Name, "Details", "Store", new { id = item.ItemId }, null)
+            </td>
+            <td>
+                @item.Item.Price
+            </td>
+            <td id="item-count-@item.RecordId">
+                @item.Count
+            </td>
+            <td>
+                @item.DateCreated
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td id="cart-total">
+            @Model.CartTotal
+        </td>
+    </tr>
+</table>

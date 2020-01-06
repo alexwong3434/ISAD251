@@ -1,0 +1,52 @@
+﻿@model Bar.ViewModels.OrderLookupViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+<p>
+    Order ID: @Html.TextBox("searchid") <br />
+    <input type="submit" class="btn btn-primary" value="Search" />
+
+    @if (Model != null)
+    {
+        @Model.Order.OrderDate
+    }
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price (Each)
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+
+            @if (Model != null)
+            {
+                foreach (var item in Model.ItemsList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Model.OrderDetails.Where(t => t.ItemId == item.ID).FirstOrDefault().Quantity
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+</p>
+}
+
