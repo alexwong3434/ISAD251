@@ -87,6 +87,7 @@ C:\Users\skhadmin\source\repos\Bar\Bar\bin\Microsoft.CodeDom.Providers.DotNetCom
 C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.csproj.CopyComplete
 C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.dll
 C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.pdb
-C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.csprojAssemblyReference.cache
 C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.Migrations.Inital.resources
 C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.csproj.GenerateResource.cache
+C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.csprojAssemblyReference.cache
+C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.Migrations.Initial.resources

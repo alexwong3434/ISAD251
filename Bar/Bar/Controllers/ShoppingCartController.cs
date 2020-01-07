@@ -50,18 +50,12 @@ namespace Bar.Controllers
             // Remove the item from the cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Get the name of the album to display confirmation
-            string ItemName = storeDB.Items
-                .Single(item => item.ID == id).Name;
-
             // Remove from cart
             int itemCount = cart.RemoveFromCart(id);
 
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel
             {
-                Message = Server.HtmlEncode(ItemName) +
-                    " has been removed from your shopping cart.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,
@@ -80,27 +74,6 @@ namespace Bar.Controllers
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
         }
-
-        /*public ActionResult CreateOrder()
-        {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
-
-
-            if (cart.GetCartItems() == null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            // Set up our ViewModel
-            var viewModel = new ShoppingCartViewModel
-            {
-                CartItems = cart.GetCartItems(),
-                CartTotal = cart.GetTotal()
-            };
-                // Return the view
-                return View(viewModel);
-
-        }*/
 
     }
 }

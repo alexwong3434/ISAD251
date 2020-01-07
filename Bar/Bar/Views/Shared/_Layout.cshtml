@@ -27,7 +27,11 @@
                     <li>@Html.ActionLink("Item", "Index", "Items")</li>
                     <li>@Html.ActionLink("ShoppingCart", "Index", "ShoppingCart")</li>
                     <li>@Html.ActionLink("OrderLookup", "Index", "OrderLookup")</li>
-                </ul>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("OrderHistory", "Index", "OrderHistory")</li>
+                    }
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

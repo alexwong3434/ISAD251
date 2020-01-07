@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Bar.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+    
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <table class="table">
+            <tr>
+                <th>
+                    OrderID
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    UserName
+                </th>
+            </tr>
+            
+            @foreach (var order in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.OrderDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.UserName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = order.OrderId })
+                    </td>
+                </tr>
+                }
+        </table>
+    </p>
+}

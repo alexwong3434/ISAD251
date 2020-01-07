@@ -1,0 +1,45 @@
+﻿@model Bar.ViewModels.OrderLookupViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <p>Order ID: @Model.Order.OrderId
+    <br>Order Date: @Model.Order.OrderDate
+    <br>
+    </p>
+
+        <h2>Details</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    Item
+                </th>
+                <th>
+                    Price (Each)
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model.ItemsList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Model.OrderDetails.Where(t => t.ItemId == item.ID).FirstOrDefault().Quantity
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        @Html.ActionLink("Back", "Index", "OrderHistory")

@@ -185,6 +185,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderHistoryController.cs" />
     <Compile Include="Controllers\OrderLookupController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\202001030224268_Inital.cs" />
     <Compile Include="Migrations\202001030224268_Inital.Designer.cs">
       <DependentUpon>202001030224268_Inital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001030907343_Initial.cs" />
+    <Compile Include="Migrations\202001030907343_Initial.Designer.cs">
+      <DependentUpon>202001030907343_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -279,6 +284,8 @@
     <Content Include="Views\Checkout\Complete.cshtml" />
     <Content Include="Views\Checkout\ConfirmOrder.cshtml" />
     <Content Include="Views\OrderLookup\Index.cshtml" />
+    <Content Include="Views\OrderHistory\Index.cshtml" />
+    <Content Include="Views\OrderHistory\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +306,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001030224268_Inital.resx">
       <DependentUpon>202001030224268_Inital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001030907343_Initial.resx">
+      <DependentUpon>202001030907343_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
