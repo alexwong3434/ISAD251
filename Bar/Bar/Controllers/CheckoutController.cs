@@ -1,4 +1,5 @@
 ﻿using Bar.Models;
+using Bar.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,21 @@ namespace Bar.Controllers
     public class CheckoutController : Controller
     {
         ApplicationDbContext storeDB = new ApplicationDbContext();
-        //const string PromoCode = "FREE";
 
         // GET: Checkout
         //
         // GET: /Checkout/AddressAndPayment
         public ActionResult ConfirmOrder()
         {
-            return View();
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var viewModel = new ShoppingCartViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal()
+            };
+            return View(viewModel);
         }
+
         //
         // POST: /Checkout/AddressAndPayment
         [HttpPost]
@@ -30,32 +37,33 @@ namespace Bar.Controllers
 
             try
             {
-                /*if (string.Equals(values["PromoCode"], PromoCode,
-                    StringComparison.OrdinalIgnoreCase) == false)
+                order.UserName = User.Identity.Name;
+                order.OrderDate = DateTime.Now;
+
+                //Save Order
+                storeDB.Orders.Add(order);
+                    storeDB.SaveChanges();
+
+                //Process the order
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                cart.CreateOrder(order);
+
+                if (order.Total == 0) //prevent user to Check out with empty cart 
                 {
-                    return View(order);
+                    return View("Error");
                 }
                 else
-                {*/
-                    order.UserName = User.Identity.Name;
-                    order.OrderDate = DateTime.Now;
-
-                    //Save Order
-                    storeDB.Orders.Add(order);
-                    storeDB.SaveChanges();
-                    //Process the order
-                    var cart = ShoppingCart.GetCart(this.HttpContext);
-                    cart.CreateOrder(order);
-
+                {
                     return RedirectToAction("Complete",
                         new { id = order.OrderId });
-                //}
+                }
             }
             catch
             {
                 //Invalid - redisplay with errors
-                return View(order);
+                return View("Error");
             }
+
         }
         //
         // GET: /Checkout/Complete

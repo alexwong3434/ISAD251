@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Bar.Models
@@ -28,7 +29,6 @@ namespace Bar.Models
         public string Description { get; set; }
 
         public Boolean HiddenTag { get; set; }
-
 
     }
 }

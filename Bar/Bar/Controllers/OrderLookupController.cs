@@ -21,15 +21,6 @@ namespace Bar.Controllers
                     var order = storeDB.Orders
                                      .Single(Orderid => Orderid.OrderId == searchid);
 
-                    if (order == null)
-                    {
-                        return View();
-                    }
-
-                    else
-
-                    {
-
                         var orderDetail = storeDB.OrderDetails
                                          .Where(item => item.OrderId == order.OrderId);
 
@@ -45,17 +36,17 @@ namespace Bar.Controllers
                         viewModel.ItemsList = itemsList.ToList();
 
                         return View(viewModel);
-                    }
+                    
                 }
 
-                catch (Exception e)
+                catch (Exception)
 
                 {
+                    ViewBag.result = "not found";
                     return View();
                 }
 
             }
-
             return View();
         }
     }

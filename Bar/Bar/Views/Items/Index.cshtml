@@ -1,83 +1,42 @@
 ﻿@model IEnumerable<Bar.Models.Item>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Menu";
 }
 
-<h2>Index</h2>
+<h2></h2>
 
-        @if (User.IsInRole("Admin"))
-        {
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-        }
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            @if (User.IsInRole("Admin"))
-            { 
-                <th>
-
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HiddenTag)
-                </th>
-            }
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-            </td>
-            @if (User.IsInRole("Admin"))
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.HiddenTag)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            }
-
-
-    </tr>
-        }
-
-    </table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-10 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img class="img-responsive img-rounded" src="@Url.Content("~/Content/img/" + Html.DisplayFor(modelItem => item.ImageUrl))" />
+                </div>
+                <div class="panel-body">
+                    <p>@Html.DisplayFor(modelItem => item.Name)</p>
+                    <p>@Html.DisplayFor(modelItem => item.Genre)</p>
+                    <p>@Html.DisplayFor(modelItem => item.Price)</p>
+                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                </div>
+                <div class="panel-footer">
+                    @Html.ActionLink("Add to cart", "AddToCart", new { Controller = "ShoppingCart", id = item.ID }, new { @class = "btn btn-primary" })
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-primary" })
+                        <br> <b>Hidden?</b> @Html.DisplayFor(modelItem => item.HiddenTag)
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

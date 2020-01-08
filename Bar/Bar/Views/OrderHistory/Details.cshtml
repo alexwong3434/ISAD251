@@ -1,17 +1,15 @@
 ﻿@model Bar.ViewModels.OrderLookupViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Order History Details";
 }
 
-    <p>Order ID: @Model.Order.OrderId
-    <br>Order Date: @Model.Order.OrderDate
-    <br>
+    <p>
+        <h3><b>Order ID: @Model.Order.OrderId</b></h3>
+        <h3>Order Date: @Model.Order.OrderDate</h3>
     </p>
 
-        <h2>Details</h2>
-
-        <table class="table">
+        <table class="table dt-responsive">
             <tr>
                 <th>
                     Item
@@ -42,4 +40,7 @@
 
         </table>
 
-        @Html.ActionLink("Back", "Index", "OrderHistory")
+        <a href="@Url.Action("Index", "OrderHistory")" class="btn btn-default">
+            Return to History Index
+            <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+        </a>

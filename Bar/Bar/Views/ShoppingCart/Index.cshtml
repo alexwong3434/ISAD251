@@ -30,15 +30,13 @@
         });
     });
 </script>
-<h3>
-    <em>Review</em> your cart:
-</h3>
-<p class="button">
-        @Html.ActionLink("Checkout >> ", "ConfirmOrder", "Checkout")
-</p>
+
+
+<h2><b>Review your cart:</b></h2>
+
 <div id="update-message">
 </div>
-<table class="table">
+<table class="table dt-responsive">
     <tr>
         <th>
             Name
@@ -55,7 +53,7 @@
     {
         <tr id="row-@item.RecordId">
             <td>
-                @Html.ActionLink(item.Item.Name, "Details", "Store", new { id = item.ItemId }, null)
+                @Html.ActionLink(item.Item.Name, "Details", "Items", new { id = item.ItemId }, null)
             </td>
             <td>
                 @item.Item.Price
@@ -64,9 +62,9 @@
                 @item.Count
             </td>
             <td>
-                <a href="#" class="RemoveLink"
-                   data-id="@item.RecordId">
+                <a href="#" class="RemoveLink"data-id="@item.RecordId">
                     Remove from cart
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </a>
             </td>
         </tr>
@@ -85,5 +83,22 @@
     </tr>
 </table>
 
+
+@if (Model.CartTotal != 0)
+{
+<p>
+    <a href="@Url.Action("ConfirmOrder", "Checkout")" class="btn btn-default">
+        CheckOut
+        <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+    </a>
+</p>
+}
+
+<br/>
+
+<a href="@Url.Action("Index", "Items")" class="btn btn-default">
+    Return to Menu
+    <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+</a>
 
 

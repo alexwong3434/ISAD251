@@ -1,12 +1,24 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: rgba(204, 204, 204, 1);
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.jumbotron {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    background-color: transparent !important;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +33,75 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: rgba(204, 204, 204, 1);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: rgba(204, 204, 204, 1);
+}
+
+a {
+    color: rgba(204, 204, 204, 1);
+}
+
+.btn-primary {
+    color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.075);
+}
+
+html {
+    font-size: 14px;
+}
+
+p {
+    font-size: 14px;
+}
+
+.transparent {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.top-nav-collapse {
+    background-image: url('img/background.jpg');
+}
+
+.navbar:not(.top-nav-collapse) {
+    background-image: url('img/background.jpg');
+}
+
+.panel {
+    border: 0px;
+    background-color: rgba(0,0,0,0.5);
+    color: #ffff;
+    text-align: center;
+}
+
+.panel-heading {
+    border: 0px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.panel-footer {
+    border: 0px;
+    background: none;
+    text-align: center;
+}
+
+button, input, optgroup, select, textarea {
+    color: black;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 1px \9;
+    line-height: normal;
+    transform: scale(1.6, 1.6);
 }
