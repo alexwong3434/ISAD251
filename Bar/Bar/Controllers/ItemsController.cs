@@ -18,12 +18,12 @@ namespace Bar.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin"))     //Show all items when logged in as "Admin" role
             {
                 return View(db.Items.ToList());
             }
             else
-            {
+            {                               //Show only un-hidden items
                 return View(db.Items.Where(i => i.HiddenTag == false).ToList());
             }
         }

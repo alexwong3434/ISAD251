@@ -29,7 +29,7 @@ namespace Bar.Controllers
         // GET: /Store/AddToCart/5
         public ActionResult AddToCart(int id)
         {
-            // Retrieve the merchantise from the database
+            // Retrieve the item from the database
             var addedItem = storeDB.Items
                 .Single(Item => Item.ID == id);
 

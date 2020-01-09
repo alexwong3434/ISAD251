@@ -186,4 +186,3 @@ C:\Users\skhadmin\source\repos\Bar\Bar\bin\PagedList.dll
 C:\Users\skhadmin\source\repos\Bar\Bar\bin\PagedList.Mvc.dll
 C:\Users\skhadmin\source\repos\Bar\Bar\bin\PagedList.xml
 C:\Users\skhadmin\source\repos\Bar\Bar\bin\PagedList.Mvc.xml
-C:\Users\skhadmin\source\repos\Bar\Bar\obj\Debug\Bar.csprojAssemblyReference.cache

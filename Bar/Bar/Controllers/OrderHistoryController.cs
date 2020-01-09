@@ -19,6 +19,7 @@ namespace Bar.Controllers
         // GET: OrderHistory
         public ActionResult Index(string sortOrder, int? page)
         {
+            //Sorting
             ViewBag.CurrentSort = sortOrder;
             ViewBag.OrderIdSortParm = sortOrder == "OrderId" ? "orderid_desc" : "OrderId";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -43,13 +44,14 @@ namespace Bar.Controllers
                     break;
             }
 
+            //Paging
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(orders.ToPagedList(pageNumber, pageSize));
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Details(int id)
+        public ActionResult Details(int id) //get data from DB and pass to viewmodel
         {
             var order = storeDB.Orders
                                      .Single(Orderid => Orderid.OrderId == id);

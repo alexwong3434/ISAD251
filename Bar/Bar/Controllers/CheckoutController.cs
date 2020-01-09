@@ -15,7 +15,7 @@ namespace Bar.Controllers
 
         // GET: Checkout
         //
-        // GET: /Checkout/AddressAndPayment
+        // Confirm Order from current session shopping cart
         public ActionResult ConfirmOrder()
         {
             var cart = ShoppingCart.GetCart(this.HttpContext);
@@ -37,7 +37,7 @@ namespace Bar.Controllers
 
             try
             {
-                order.UserName = User.Identity.Name;
+                order.UserName = User.Identity.Name;    //set current seesion username and time
                 order.OrderDate = DateTime.Now;
 
                 //Save Order
@@ -76,7 +76,7 @@ namespace Bar.Controllers
 
             if (isValid)
             {
-                return View(id);
+                return View(id);    //return OrderID to view
             }
             else
             {

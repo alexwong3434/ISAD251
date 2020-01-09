@@ -14,9 +14,9 @@ namespace Bar.Controllers
         public ActionResult Index(int? searchid)
 
         {
-            if (searchid.HasValue)
+            if (searchid.HasValue) //do nothing when sumbit empty input
             {
-                try
+                try                //try to match record from db with orderID
                 {
                     var order = storeDB.Orders
                                      .Single(Orderid => Orderid.OrderId == searchid);
@@ -40,7 +40,8 @@ namespace Bar.Controllers
                 }
 
                 catch (Exception)
-
+                                    //when fail to match any record
+                                    //show "not found" message beside search button
                 {
                     ViewBag.result = "not found";
                     return View();
