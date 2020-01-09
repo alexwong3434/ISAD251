@@ -1,0 +1,71 @@
+﻿@model Bar.ViewModels.OrderLookupViewModel
+
+@{
+    ViewBag.Title = "Order Lookup";
+
+}
+
+
+
+
+<h2>Order Lookup</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                @Html.TextBox("searchid")
+                <button type="submit" class="btn btn-default">Search</button>
+                <span style="color:darkgray" id="result"></span>
+            </div>
+        </form>
+    </div>
+
+    <p>
+        @if (Model != null)
+        {
+            <h3><b>Ordered Date: @Model.Order.OrderDate</b></h3>
+        }
+        <table class="table dt-responsive">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price (Each)
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+
+            @if (Model != null)
+            {
+                foreach (var item in Model.ItemsList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Model.OrderDetails.Where(t => t.ItemId == item.ID).FirstOrDefault().Quantity
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </p>
+}
+
+@if (ViewBag.result != null)
+{
+
+    <script>
+
+        $("#result").html("Record not found");
+    </script>
+}

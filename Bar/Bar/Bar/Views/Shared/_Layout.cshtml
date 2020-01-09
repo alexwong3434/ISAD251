@@ -1,0 +1,106 @@
+﻿<script src="/Scripts/jquery-3.4.1.min.js"
+        type="text/javascript"></script>
+<script type="text/javascript">
+    var changeFontSize = function (increaseFont) {
+    var fontTargets = new Array('html', 'p');
+
+    fontTargets.forEach(function (element) {
+        var $element = $(element);
+        var newFontSize;
+        var currentFontSize = $element.css('font-size');
+        var currentFontSizeNum = parseFloat(currentFontSize, 10);
+
+        if (increaseFont) {
+            $element.css('font-size', 10);
+            newFontSize = currentFontSizeNum * 1.2;
+        } else {
+            newFontSize = currentFontSizeNum * 0.8;
+        }
+
+        $element.css('font-size', newFontSize);
+    });
+};
+$(document).ready(function () {
+    // Reset Font Size
+    var originalFontSize = $('html').css('font-size');
+
+    $(".resetFont").click(function () {
+        $('html').css('font-size', originalFontSize);
+    });
+    // Increase Font Size
+    $(".increaseFont").on('click', function () {
+        changeFontSize(true);
+    });
+    // Decrease Font Size
+    $(".decreaseFont").on('click', function () {
+        changeFontSize(false);
+    });
+});
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ISAD251</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("I S A D 2 5 1", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-default">
+                        Home
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    </a>
+                    <a href="@Url.Action("Index", "Items")" class="btn btn-default">
+                        Menu
+                        <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+                    </a>
+                    <a href="@Url.Action("Index", "ShoppingCart")" class="btn btn-default">
+                        Cart
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    </a>
+                    <a href="@Url.Action("Index", "OrderLookup")" class="btn btn-default">
+                        OrderLookup
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </a>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <h4><span class="label label-default">FontSize:</span></h4>
+                        <button type="button" class="increaseFont">+</button>
+                        <button type="button" class="decreaseFont">-</button>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Index", "OrderHistory")" class="btn btn-default">
+                            OrderHistory
+                            <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+                        </a>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

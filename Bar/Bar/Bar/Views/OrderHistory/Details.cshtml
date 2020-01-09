@@ -1,0 +1,46 @@
+﻿@model Bar.ViewModels.OrderLookupViewModel
+
+@{
+    ViewBag.Title = "Order History Details";
+}
+
+    <p>
+        <h3><b>Order ID: @Model.Order.OrderId</b></h3>
+        <h3>Order Date: @Model.Order.OrderDate</h3>
+    </p>
+
+        <table class="table dt-responsive">
+            <tr>
+                <th>
+                    Item
+                </th>
+                <th>
+                    Price (Each)
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model.ItemsList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Model.OrderDetails.Where(t => t.ItemId == item.ID).FirstOrDefault().Quantity
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <a href="@Url.Action("Index", "OrderHistory")" class="btn btn-default">
+            Return to History Index
+            <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+        </a>

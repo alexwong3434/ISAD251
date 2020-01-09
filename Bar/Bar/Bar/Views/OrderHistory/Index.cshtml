@@ -1,0 +1,53 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Bar.Models.Order>
+
+@{
+    ViewBag.Title = "Order History";
+}
+
+<h2>Order History</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <table class="table dt-responsive">
+            <tr>
+                <th>
+                    @Html.ActionLink("OrderID", "Index", new { sortOrder = ViewBag.OrderIdSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("OrderDate", "Index", new { sortOrder = ViewBag.DateSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("UserName", "Index", new { sortOrder = ViewBag.NameSortParm })
+                </th>
+            </tr>
+
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.OrderDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => order.UserName)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "OrderHistory", new { id = order.OrderId })" class="btn btn-default">
+                            Details
+                            <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </p>
+}
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }))

@@ -1,0 +1,22 @@
+﻿@model int
+
+@{
+    ViewBag.Title = "Order Complete";
+}
+
+<h2>Order Complete</h2>
+<br />
+<h3>Thank you for your Order !</h3>
+<h3>Your OrderId is @Model</h3>
+<br/>
+<h3>You can Review your Order at</h3>
+<a href="@Url.Action("Index", "OrderLookup")" class="btn btn-default">
+    OrderLookup
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+</a>
+<br/>
+<br />
+<a href="@Url.Action("Index", "Items")" class="btn btn-default">
+    Return to Menu
+    <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+</a>
